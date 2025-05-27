@@ -1,0 +1,25 @@
+/* eslint-disable */
+
+build
+**/*.html
+package-lock.json
+node_modules
+dist
+public/administration
+public/storefront
+assets
+public
+src/Resources/app/administration/build
+src/Resources/app/storefront/dist
+src/Resources/app/storefront/node_modules
+src/Resources/app/administration/node_modules
+src/Resources/app/storefront/vendor
+src/Resources/app/administration/vendor
+# Shopware spezifische generierte Dateien
+src/Resources/app/storefront/var
+src/Resources/app/administration/var
+# IDE und Systemdateien
+.idea
+.vscode
+.DS_Store
+Thumbs.db

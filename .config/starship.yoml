@@ -1,0 +1,59 @@
+# Get editor completions based on the config schema
+"$schema" = 'https://starship.rs/config-schema.json'
+
+# Inserts a blank line between shell prompts
+add_newline = true
+
+# Replace the '❯'  symbol in the prompt with '➜'
+[character] # The name of the module we are configuring is 'character'
+success_symbol = '[➜](bold  green)' # The 'success_symbol' segment is being set to '➜'  with the color 'bold green'
+
+# Disable the package module, hiding it from the prompt completely
+[package]
+disabled = true
+
+# Direnv options
+
+# Git Branch
+[git_branch]
+symbol = '🌱 '
+truncation_length = 4
+truncation_symbol = ''
+
+# Git Commit
+[git_commit]
+commit_hash_length = 4
+tag_symbol = '🔖 '
+
+# Git State
+[git_state]
+format = '[\($state( $progress_current of $progress_total)\)]($style) '
+cherry_pick = '[🍒 PICKING](bold red)'
+
+# Git Status
+[git_status]
+conflicted = '🚩''
+ahead = '🏎💨${count}'
+behind = '😰${count}'
+diverged = '↕️⬆️${ahead_count}⬇️${behind_count}'
+up_to_date = '😎'
+untracked = '🤷'
+stashed = '📦'
+modified = '📝'
+staged = '[++\($count\)](green)'
+renamed = '👅'
+deleted = '🗑'
+
+# Memory Usage
+[memory_usage]
+disabled = false
+threshold = -1
+symbol = '💽'
+style = 'bold dimmed green'
+
+# Node.js
+[nodejs]
+format = 'via [🤖 $version](bold green) '
+
+[php]
+format = 'via [🔹 $version](147 bold) '
