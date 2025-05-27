@@ -1,7 +1,3 @@
-Here's an improved and polished version of your `README.md`, keeping your original intent while making the language more concise, clear, and professional:
-
----
-
 # 📁 Dotfiles by yanneckb
 
 A curated collection of configuration files to set up a productive and consistent development environment—quickly and reproducibly.
@@ -119,7 +115,3 @@ stow .
 ---
 
 Happy hacking! 🧠💻🚀
-
----
-
-Let me know if you'd like this as a Markdown preview, PDF, or HTML version too!

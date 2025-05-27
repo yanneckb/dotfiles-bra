@@ -1,7 +1,3 @@
-Here’s a polished and expanded version of your **general.md** for clearer structure, more details, and better readability:
-
----
-
 # 📚 General Documentation
 
 This document collects essential commands, setup instructions, and tips for my personal development environment.
@@ -120,7 +116,3 @@ ln -s /path/to/source /path/to/destination
 mv /path/to/source /path/to/destination
 ln -s /path/to/destination /path/to/source
 ```
-
----
-
-If you want, I can also help you create automation scripts or add more advanced git workflows and SSH tips!

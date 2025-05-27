@@ -1,7 +1,3 @@
-Here’s an enhanced and polished version of your **theme.md**, adding more structure, context, and details for better clarity and usability:
-
----
-
 # 🎨 My Current Theme Setup
 
 A comprehensive overview of my preferred fonts and color themes across various tools and applications for a consistent and eye-friendly developer environment.
@@ -47,7 +43,3 @@ Gruvbox Hard is a high-contrast, warm, and retro-inspired color palette that red
 * Apply the **Gruvbox Hard** palette everywhere possible to reduce visual distractions and fatigue.
 * Customize further by tweaking Starship’s prompt settings in `~/.config/starship.toml` with Gruvbox presets.
 * Sync your terminal color scheme and editor theme for a seamless look.
-
----
-
-If you want, I can help generate config snippets or setup guides for any of these tools!
