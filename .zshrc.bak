@@ -1,0 +1,124 @@
+
+# -------------------------------
+# Oh My Zsh configuration
+# -------------------------------
+
+export ZSH="$HOME/.oh-my-zsh"
+ZSH_THEME="robbyrussell"
+# ZSH_THEME_RANDOM_CANDIDATES=( "robbyrussell" "agnoster" )
+
+# Plugins
+plugins=(
+  git
+  zsh-autosuggestions
+  sudo
+  web-search
+  copyfile
+  copypath
+  dirhistory
+  history
+  zsh-syntax-highlighting
+  docker-compose
+  composer
+  common-aliases
+  ssh
+  git-auto-fetch
+  macos
+  themes
+  vscode
+)
+
+source $ZSH/oh-my-zsh.sh
+
+# -------------------------------
+# Appearance and Prompt
+# -------------------------------
+
+eval "$(starship init zsh)"
+# eval "$(oh-my-posh init zsh --config ~/.config/oh-my-posh.conf.json)"
+
+# -------------------------------
+# Language & Encoding
+# -------------------------------
+
+export LANG=de_DE.UTF-8
+# export LANG=en_US.UTF-8
+
+
+# -------------------------------
+# Developer Tools
+# -------------------------------
+
+# Puppeteer configuration
+export PUPPETEER_SKIP_CHROMIUM_DOWNLOAD=true
+export PUPPETEER_EXECUTABLE_PATH=$(which chromium)
+
+# Git Auto Fetch
+export GIT_AUTO_FETCH_INTERVAL=1200 # in seconds
+
+# Node.js version management
+export NVM_DIR="$HOME/.nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"
+[ -s "$NVM_DIR/bash_completion" ] && . "$NVM_DIR/bash_completion"
+[[ -s "$HOME/.avn/bin/avn.sh" ]] && source "$HOME/.avn/bin/avn.sh"
+
+autoload -U add-zsh-hook
+
+load-nvmrc() {
+  local nvmrc_path
+  nvmrc_path="$(nvm_find_nvmrc)"
+
+  if [ -n "$nvmrc_path" ]; then
+    local nvmrc_node_version
+    nvmrc_node_version=$(cat "$nvmrc_path")
+
+    if [[ "$(nvm current)" != "v$nvmrc_node_version" ]]; then
+      nvm use "$nvmrc_node_version"
+    fi
+  fi
+}
+
+add-zsh-hook chpwd load-nvmrc
+load-nvmrc
+
+# -------------------------------
+# Syntax Highlighting & Suggestions
+# -------------------------------
+
+source /opt/homebrew/share/zsh-autosuggestions/zsh-autosuggestions.zsh
+source /opt/homebrew/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+
+# -------------------------------
+# User Aliases and Functions
+# -------------------------------
+
+alias ..='cd ..'
+alias ...='cd ../..'
+alias lg='lazygit'
+
+function cl() {
+  command clear
+  fastfetch
+}
+
+# -------------------------------
+# Custom Tools
+# -------------------------------
+
+fastfetch
+
+# -------------------------------
+# Optional Configuration Snippets
+# -------------------------------
+
+# export MANPATH="/usr/local/man:$MANPATH"
+
+# Preferred editor
+# if [[ -n $SSH_CONNECTION ]]; then
+#   export EDITOR='vim'
+# else
+#   export EDITOR='mvim'
+# fi
+
+# Compilation flags
+# export ARCHFLAGS="-arch x86_64"
