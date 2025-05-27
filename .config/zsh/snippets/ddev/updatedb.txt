@@ -1,0 +1,6 @@
+ddev exec bin/console database:migrate --all
+ddev exec bin/console dal:refresh:index
+ddev exec bin/console system:update:finish
+ddev exec bin/console cache:clear
+ddev exec bin/console theme:compile
+echo "Updated and migrated database. Everything should be fresh now!"

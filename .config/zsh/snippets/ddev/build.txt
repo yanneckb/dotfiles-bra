@@ -1,0 +1,3 @@
+ddev exec bin/build-js.sh
+ddev exec bin/console ca:cl
+echo "Successfully builded storefront and administration!"

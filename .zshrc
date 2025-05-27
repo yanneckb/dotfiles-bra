@@ -5,6 +5,11 @@
 ### Set language to German
 export LANG=de_DE.UTF-8
 
+### source dotfiles
+for file in ~/.config/zsh/*.zsh; do
+  source $file
+done
+
 ### zinit plugin manager
 ZINIT_HOME="${XDG_DATA_HOME:-${HOME}/.local/share}/zinit/zinit.git"
 [ ! -d $ZINIT_HOME ] && mkdir -p "$(dirname $ZINIT_HOME)"
@@ -26,20 +31,8 @@ zinit snippet OMZP::command-not-found
 autoload -U compinit && compinit
 zinit cdreplay -q
 
-### fastfetch (wenn installiert)
+### fastfetch
 fastfetch
-
-### clear + fastfetch alias
-function cl() {
-  command clear
-  fastfetch
-}
-
-### Aliases
-alias ..='cd ..'
-alias ...='cd ../..'
-alias lg='lazygit'
-alias ls='lsd'
 
 ### Keybindings
 bindkey -e
@@ -87,20 +80,6 @@ export NVM_DIR="$HOME/.nvm"
 [[ -s "$HOME/.avn/bin/avn.sh" ]] && source "$HOME/.avn/bin/avn.sh"
 
 autoload -U add-zsh-hook
-
-load-nvmrc() {
-  local nvmrc_path
-  nvmrc_path="$(nvm_find_nvmrc)"
-
-  if [ -n "$nvmrc_path" ]; then
-    local nvmrc_node_version
-    nvmrc_node_version=$(cat "$nvmrc_path")
-
-    if [[ "$(nvm current)" != "v$nvmrc_node_version" ]]; then
-      nvm use "$nvmrc_node_version"
-    fi
-  fi
-}
 
 add-zsh-hook chpwd load-nvmrc
 load-nvmrc
