@@ -39,7 +39,7 @@ function cl() {
 alias ..='cd ..'
 alias ...='cd ../..'
 alias lg='lazygit'
-alias ls='ls -G'  # macOS equivalent to GNU ls --color
+alias ls='lsd'
 
 ### Keybindings
 bindkey -e

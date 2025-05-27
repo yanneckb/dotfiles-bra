@@ -1,0 +1,35 @@
+# ~/.config/lsd/config.yaml
+
+classic: false               # Use modern layout with aligned columns
+icons:
+  when: auto                 # Show icons if terminal supports them
+  theme: fancy               # Use colored Nerd Font icons
+  separator: " "             # Space between icon and filename
+
+color:
+  when: auto                 # Enable colors automatically
+  theme: default             # Use the built-in default color theme
+
+blocks:
+  - permission               # File permissions
+  - user                     # File owner
+  - group                    # Group name
+  - size                     # File size
+  - date                     # Last modified date
+  - name                     # File or directory name
+
+date: '+%Y-%m-%d %H:%M'      # Display date format: YYYY-MM-DD HH:MM
+dereference: false           # Don't follow symlinks
+
+indicators: true             # Show type indicators (/, *, @, etc.)
+layout: grid                 # Use grid layout (like classic ls)
+symlink-arrow: "⇒"           # Arrow symbol for symlinks
+
+recursion:
+  enabled: false             # Don't list recursively by default
+  depth: 3                   # If enabled via flag, max recursion depth
+
+sorting:
+  column: name               # Sort by filename
+  reverse: false             # Do not reverse sort order
+  dir-grouping: first        # Show directories before files
