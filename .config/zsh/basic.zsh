@@ -7,6 +7,7 @@ alias ..='cd ..'
 alias ...='cd ../..'
 alias lg='lazygit'
 alias ls='lsd'
+alias la='lsd -la'
 alias chdsk='df -k .'
 
 # --- Functions ---

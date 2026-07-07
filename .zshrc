@@ -124,14 +124,3 @@ export NVM_DIR="$HOME/.nvm"
 autoload -U add-zsh-hook
 add-zsh-hook chpwd load-nvmrc
 load-nvmrc
-
-### Shopware 6 shortcuts
-alias sw-console="bin/console"
-alias sw-cc="bin/console cache:clear"
-alias sw-cc-full="bin/console cache:clear && rm -rf var/cache/*"
-alias sw-build-admin="bin/build-administration.sh"
-alias sw-build-storefront="bin/build-storefront.sh"
-alias sw-watch-admin="bin/watch-administration.sh"
-alias sw-watch-storefront="bin/watch-storefront.sh"
-alias sw-theme-compile="bin/console theme:compile"
-alias sw-plugin-refresh="bin/console plugin:refresh"
