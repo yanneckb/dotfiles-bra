@@ -1,0 +1,10 @@
+# Global mise config — https://mise.jdx.dev
+[settings]
+idiomatic_version_file_enable_tools = ["node", "php"]
+activate_aggressive = false
+jobs = 4
+
+[tools]
+# Uncomment to pin global defaults:
+# node = "lts"
+# php = "8.3"

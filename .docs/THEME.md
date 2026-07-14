@@ -1,45 +1,51 @@
-# 🎨 My Current Theme Setup
+# Theme Setup
 
-A comprehensive overview of my preferred fonts and color themes across various tools and applications for a consistent and eye-friendly developer environment.
+Consistent **Gruvbox Hard** palette and **JetBrains Mono Nerd Font** across tools.
 
----
+## Font
 
-## 🔤 Fonts
-
-**JetBrains Mono Nerd Font**
-A popular, readable, and powerline-compatible font with great ligature support.
-
-* Official repo: [JetBrains Mono Nerd Font](https://github.com/JetBrains/JetBrainsMono)
-* Install via Homebrew (macOS):
+**JetBrains Mono Nerd Font** — ligatures, Nerd Font icons, Powerline symbols.
 
 ```sh
-brew install --cask font-jetbrains-mono
+brew install --cask font-jetbrains-mono-nerd-font
 ```
 
-*Tip:* After installing, configure your terminal and editor to use this font for the best experience.
+Set in: Ghostty, Cursor/VS Code. (Kitty/iTerm2 optional/legacy.)
 
----
+## Gruvbox Hard
 
-## 🎨 Gruvbox Hard Color Scheme
+High-contrast warm palette. Applied in:
 
-Gruvbox Hard is a high-contrast, warm, and retro-inspired color palette that reduces eye strain while maintaining vibrancy.
+| Tool | Config / Source |
+|------|-----------------|
+| **Ghostty** | `~/.config/ghostty/config.ghostty` (theme: Gruvbox Dark Hard) |
+| **Kitty** | `~/.config/kitty/kitty.conf` (legacy) |
+| **iTerm2** | `~/.config/iterm2/themes/gruvbox-hard.itermcolors` (legacy) |
+| **Starship** | `~/.config/starship.toml` (`palette = 'gruvbox_dark'`) |
+| **Cursor** | Extension: [Gruvbox Theme](https://marketplace.visualstudio.com/items?itemName=jdinhlife.gruvbox) |
 
-### Implementations & Resources
+### Optional references
 
-| Application    | Notes & Links                                                                                                                          |
-| -------------- | -------------------------------------------------------------------------------------------------------------------------------------- |
-| **VSCode**     | [Gruvbox Hard Theme](https://marketplace.visualstudio.com/items?itemName=jdinhlife.gruvbox) – Official VSCode extension                |
-| **Neovim**     | [gruvbox.nvim](https://github.com/ellisonleao/gruvbox.nvim) – Lua port of Gruvbox for Neovim                                           |
-| **Starship**   | [Gruvbox Rainbow Preset](https://starship.rs/presets/gruvbox-rainbow) – Starship prompt theme preset                                   |
-| **iTerm2**     | [Gruvbox for iTerm2](https://github.com/runxel/gruvbox-iterm) – iTerm2 color scheme setup                                              |
-| **Chrome**     | [Gruvbox Chrome Theme](https://chrome.google.com/webstore/detail/gruvbox-theme/ihennfdbghdiflogeancnalflhgmanop) – Browser color theme |
-| **Wallpapers** | [Gruvbox Wallpapers](https://gruvbox-wallpapers.pages.dev/) – Match your desktop background                                            |
+| Application | Link |
+|-------------|------|
+| Neovim | [gruvbox.nvim](https://github.com/ellisonleao/gruvbox.nvim) |
+| Starship preset | [Gruvbox Rainbow](https://starship.rs/presets/gruvbox-rainbow) |
+| Chrome | [Gruvbox Chrome Theme](https://chrome.google.com/webstore/detail/gruvbox-theme/ihennfdbghdiflogeancnalflhgmanop) |
+| Wallpapers | [gruvbox-wallpapers.pages.dev](https://gruvbox-wallpapers.pages.dev/) |
 
----
+## Starship
 
-## 💡 Tips for Consistency
+Active prompt config: `~/.config/starship.toml`
 
-* Use the **JetBrains Mono Nerd Font** across your terminal, editor, and IDE to keep your workflow visually cohesive.
-* Apply the **Gruvbox Hard** palette everywhere possible to reduce visual distractions and fatigue.
-* Customize further by tweaking Starship’s prompt settings in `~/.config/starship.toml` with Gruvbox presets.
-* Sync your terminal color scheme and editor theme for a seamless look.
+- Gruvbox dark palette with segment colors
+- Shows OS, user, path, git status, language versions, Docker context, time
+
+Legacy/unused configs (`starship.yoml`, `oh-my-posh.conf.json`) were removed.
+
+## Consistency checklist
+
+- [ ] Terminal font → JetBrainsMono Nerd Font (Ghostty)
+- [ ] Terminal colors → Gruvbox Dark Hard
+- [ ] Editor theme → Gruvbox
+- [ ] Starship prompt → matches palette
+- [ ] `lsd` icons → Nerd Font required

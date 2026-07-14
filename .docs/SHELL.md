@@ -1,58 +1,59 @@
-## 🖥️ Terminal Splits, Tabs & Windows
+# Terminal: Ghostty & Zellij
 
-### 📦 Using `tmux` (Recommended)
+**Ghostty** = terminal emulator · **Zellij** = multiplexer (replaces tmux)
 
-#### 👉 Windows = Tabs
+## Ghostty (primary)
 
-A "window" in `tmux` acts like a tab in a regular terminal app.
+Config entry: `~/.config/ghostty/config.ghostty`
 
-| Command                   | Description                   |
-| ------------------------- | ----------------------------- |
-| `tmux new-window`         | Open a new window             |
-| `tmux rename-window`      | Rename the current window     |
-| `tmux select-window -t N` | Switch to window N            |
-| `tmux last-window`        | Switch to the previous window |
+Loads optional fragments:
 
-#### 👉 Panes = Splits (Horizontal / Vertical)
+| File | Contents |
+|------|----------|
+| `appearance.conf` | Font, theme, padding |
+| `behavior.conf` | Clipboard, mouse, bell |
 
-| Shortcut            | Description                     |
-| ------------------- | ------------------------------- |
-| `Ctrl + b`, `%`     | Split vertically (left/right)   |
-| `Ctrl + b`, `"`     | Split horizontally (top/bottom) |
-| `Ctrl + b`, `o`     | Switch between panes            |
-| `Ctrl + b`, `x`     | Close active pane               |
-| `Ctrl + b`, `q`     | Show pane numbers               |
-| `Ctrl + b`, `Arrow` | Move between panes using arrows |
+| Shortcut | Action |
+|----------|--------|
+| `Cmd+T` | New tab |
+| `Cmd+N` | New window |
+| `Cmd+D` | Split right |
+| `Cmd+Shift+D` | Split down |
+| `Cmd+W` | Close |
 
-#### 👉 Tabs & Splits Combined
+```sh
+ghostty +list-keybinds --default
+ghostty +list-themes
+```
 
-* `Ctrl + b`, `c` → new window (tab)
-* `Ctrl + b`, `%` or `"` → split current window
+## Zellij (multiplexer)
 
-#### Bonus: Save tmux sessions (via `tmux-resurrect`)
+Config: `~/.config/zellij/config.kdl` (Gruvbox dark, compact layout)
 
-Optionally use the plugin to save and restore sessions.
+| Shortcut | Action |
+|----------|--------|
+| `Ctrl+o` | Quick navigation |
+| `Ctrl+p` | Pane switch |
+| `Ctrl+n` | New pane |
+| `Alt+f` | Toggle floating pane |
+| `Ctrl+g` | Locked mode (default in config) |
 
----
+Shell helpers: `zj`, `zja`, `zjl`, `zjcd` — see [CustomShortcuts.md](CustomShortcuts.md).
 
-### 🧭 Terminal Tabs (Without tmux)
+### Typical workflow
 
-If you're using **iTerm2** or **Kitty**, these support tabs and splits natively.
+```sh
+zj myproject      # create or attach session
+# run dws, dwa, etc. in panes
+zja myproject     # reattach later
+```
 
-#### iTerm2 (macOS)
+## Legacy terminals
 
-| Shortcut               | Action                  |
-| ---------------------- | ----------------------- |
-| `Cmd + t`              | New tab                 |
-| `Cmd + d`              | Split vertically        |
-| `Cmd + Shift + d`      | Split horizontally      |
-| `Cmd + Option + Arrow` | Navigate between splits |
-| `Cmd + w`              | Close tab or split      |
+Kitty and iTerm2 configs moved to `~/.config/legacy/`. See [legacy README](../.config/legacy/README.md).
 
-#### Kitty
+## Tips
 
-| Shortcut               | Action             |
-| ---------------------- | ------------------ |
-| `Ctrl + Shift + Enter` | New tab            |
-| `Ctrl + Shift + D`     | Split vertically   |
-| `Ctrl + Shift + E`     | Split horizontally |
+- fastfetch is **skipped** inside Zellij (no double banner)
+- Run Shopware watchers in a dedicated Zellij pane
+- Ghostty clipboard: `behavior.conf` allows read/write

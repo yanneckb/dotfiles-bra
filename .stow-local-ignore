@@ -1,8 +1,8 @@
 .git
 .gitignore
 .docs
-scripts
-.gitignore
 README.md
-.zshrc.bak
+scripts
 .history
+\.bak$
+.cursor/extensions/extensions.json

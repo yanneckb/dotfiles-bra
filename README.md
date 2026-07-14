@@ -1,117 +1,117 @@
-# 📁 Dotfiles by yanneckb
+# Dotfiles
 
-A curated collection of configuration files to set up a productive and consistent development environment—quickly and reproducibly.
+Personal dotfiles for a reproducible macOS development setup. Managed with [GNU Stow](https://www.gnu.org/software/stow/) and optimized for Shopware/DDEV workflows at Brandung.
 
----
-
-## ✨ Features
-
-* Easy setup using [GNU Stow](https://www.gnu.org/software/stow/)
-* Modular structure for shell, editor, and tooling
-* Preconfigured themes for popular terminal emulators
-* Fast onboarding for ZSH, Neovim, and tmux environments
-
----
-
-## 🛠 Requirements
-
-Install the following tools (macOS via Homebrew):
+## Quick start
 
 ```sh
-brew install fzf zsh git stow lazygit yazi starship zoxide fastfetch lsd tmux neovim
+git clone git@github.com:yanneckb/dotfiles-bra.git ~/dotfiles
+~/dotfiles/scripts/bootstrap.sh
 ```
 
-### Tool Breakdown
+## What's included
 
-| Tool        | Purpose                            |
-| ----------- | ---------------------------------- |
-| `fzf`       | Fuzzy file finder                  |
-| `zsh`       | Shell                              |
-| `git`       | Version control                    |
-| `stow`      | Symlink management                 |
-| `lazygit`   | Terminal-based Git UI              |
-| `yazi`      | TUI file manager                   |
-| `starship`  | Fast and customizable shell prompt |
-| `zoxide`    | Smarter `cd` alternative           |
-| `fastfetch` | System info summary at startup     |
-| `lsd`       | Modern `ls` replacement            |
-| `tmux`      | Terminal multiplexer               |
-| `neovim`    | Powerful text editor               |
+| Area | Path | Description |
+|------|------|-------------|
+| Shell | `.zshrc`, `.config/zsh/` | Zsh with zinit, mise, direnv, atuin |
+| Terminal | `.config/ghostty/` | Ghostty (primary) — Gruvbox Dark Hard |
+| Multiplexer | `.config/zellij/` | Zellij sessions (replaces tmux) |
+| Editor | `.config/nvim/` | Neovim + LazyVim |
+| Git | `.gitconfig` | Delta diffs, aliases |
+| Prompt | `.config/starship.toml` | Gruvbox-themed Starship prompt |
+| Tools | `.config/lsd/`, `.config/yazi/`, `.config/bat/` | Enhanced CLI tools |
+| Cursor | `.cursor/config/` | ESLint, Prettier, Stylelint defaults |
+| Legacy | `.config/legacy/` | Old Kitty/iTerm2 configs |
 
-> Optional Neovim plugins:
->
-> * [NERDTree](https://github.com/preservim/nerdtree)
-> * [vim-dirvish](https://github.com/justinmk/vim-dirvish)
+Docs: [`.docs/`](.docs/README.md) · Tool reference: [`.docs/TOOLS.md`](.docs/TOOLS.md)
 
----
+## Requirements
 
-### Optional (macOS): Tiling Window Manager
+Install everything via bootstrap or manually:
 
 ```sh
-brew install --cask amethyst
+brew bundle --file=~/dotfiles/Brewfile
 ```
 
-* [Amethyst](https://github.com/ianyh/Amethyst): Tiling window manager for macOS
+Core tools: `mise`, `direnv`, `atuin`, `delta`, `glab`, `bat`, `rg`, `fd`, `zellij`, `fzf`, `zoxide`, `lsd`, `lazygit`, `starship`, `ghostty`, `neovim`, `ddev`
 
----
-
-## 🚀 Installation
-
-1. **Clone the repo into your home directory:**
+## Installation
 
 ```sh
 git clone git@github.com:yanneckb/dotfiles-bra.git ~/dotfiles
 cd ~/dotfiles
+./scripts/bootstrap.sh
 ```
 
-2. **Stow the configuration files:**
+Or manually:
 
 ```sh
 stow .
+mise trust ~/.config/mise/config.toml
+atuin register   # once, for history sync
 ```
 
-### Optional Stow Commands
+## Repository structure
 
-* Adopt existing files (⚠️ overwrites existing config):
+```
+dotfiles/
+├── .zshrc
+├── .gitconfig
+├── Brewfile
+├── scripts/bootstrap.sh
+├── .config/
+│   ├── zsh/           # modular shell (basic, ddev, gitlab, shopware, zellij)
+│   ├── ghostty/       # terminal (split configs)
+│   ├── zellij/        # multiplexer
+│   ├── nvim/          # LazyVim
+│   ├── mise/          # runtime versions (node, php)
+│   ├── bat/, lsd/, yazi/, direnv/
+│   ├── starship.toml
+│   └── legacy/        # kitty, iterm2 (reference only)
+├── .cursor/config/
+├── .docs/
+└── README.md
+```
 
-  ```sh
-  stow --adopt .
-  ```
+## Shell modules
 
-* Remove stowed symlinks:
+| Module | Purpose |
+|--------|---------|
+| `basic.zsh` | bat/rg/fd aliases, `proj()`, navigation |
+| `ddev.zsh` | DDEV + Shopware shortcuts |
+| `gitlab.zsh` | GitLab CLI (`glab`) aliases |
+| `shopware.zsh` | shopware-cli, mkcert aliases |
+| `zellij.zsh` | Zellij session helpers |
 
-  ```sh
-  stow -D .
-  ```
+Integrations in `.zshrc`: zinit, mise, direnv, atuin, starship, fzf, zoxide
 
-* Stow individual modules:
+- [Custom Shortcuts](.docs/CustomShortcuts.md)
+- [Tools & Stack](.docs/TOOLS.md)
+- [Zsh Deep Dive](.docs/ZSH.md)
+- [Neovim / LazyVim](.docs/NEOVIM.md)
 
-  ```sh
-  stow zsh
-  stow nvim
-  ```
+## DDEV / Shopware
 
----
+| Alias | Command |
+|-------|---------|
+| `dstart` / `dstop` / `drestart` | DDEV lifecycle |
+| `dc` | `ddev exec bin/console` |
+| `dba` / `dbs` | Build administration / storefront |
+| `dwa` / `dws` | Watch administration / storefront |
+| `swc` | shopware-cli (if installed) |
 
-## 💾 Backup & Updates
+## Updates
 
-* Backup your existing configs before running `--adopt`.
-* To update, pull the latest version and re-run `stow`.
+```sh
+cd ~/dotfiles && git pull && stow -R .
+```
 
----
+## Customization
 
-## 🔧 Customization
+- `PROJ_DIR` env var overrides `~/repositories/` for `proj()`
+- `~/.gitconfig.local` for personal git identity (not in dotfiles)
+- New shell module: add `.config/zsh/myfeature.zsh`
 
-* Fork this repo to create your own setup.
-* Add your own modules under `.config/` and manage with `stow`.
+## Credits
 
----
-
-## 🙏 Credits & Inspiration
-
-* [How to manage dotfiles with GNU Stow (YouTube)](https://www.youtube.com/watch?v=y6XCebnB9gs)
-* Inspired by many open source dotfiles projects
-
----
-
-Happy hacking! 🧠💻🚀
+- [GNU Stow](https://www.gnu.org/software/stow/), [LazyVim](https://www.lazyvim.org/), Gruvbox theme

@@ -1,0 +1,16 @@
+// Zellij — Gruvbox theme, compact layout
+// Docs: https://zellij.dev/documentation/
+
+theme "gruvbox-dark"
+
+default_layout "compact"
+pane_frames true
+mouse_mode true
+copy_on_select true
+scrollback_buffer_size 10000
+
+keybinds {
+    shared_except "locked" {
+        bind "Ctrl g" { SwitchToMode "locked"; }
+    }
+}

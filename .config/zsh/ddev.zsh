@@ -26,15 +26,15 @@ alias dpr="ddev exec bin/console plugin:refresh"
 
 # --- Functions ---
 ddev-updatedb() {
-    ddev exec bin/console database:migrate --all
-    ddev exec bin/console dal:refresh:index
-    ddev exec bin/console system:update:finish
-    ddev exec bin/console cache:clear
-    ddev exec bin/console theme:compile
+  ddev exec bin/console database:migrate --all
+  ddev exec bin/console dal:refresh:index
+  ddev exec bin/console system:update:finish
+  ddev exec bin/console cache:clear
+  ddev exec bin/console theme:compile
 }
 
 ddev-watch() {
-    ddev exec bin/build-storefront.sh
-    ddev exec bin/console cache:clear
-    ddev exec bin/watch-storefront.sh
+  ddev exec bin/build-storefront.sh
+  ddev exec bin/console cache:clear
+  ddev exec bin/watch-storefront.sh
 }

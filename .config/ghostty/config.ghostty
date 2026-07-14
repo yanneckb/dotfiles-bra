@@ -1,0 +1,5 @@
+# Ghostty — entry point (loads optional config fragments)
+# Docs: https://ghostty.org/docs/config
+
+config-file = appearance.conf
+config-file = behavior.conf

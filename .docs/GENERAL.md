@@ -1,118 +1,129 @@
-# 📚 General Documentation
+# General Reference
 
-This document collects essential commands, setup instructions, and tips for my personal development environment.
+Essential commands and setup notes for the development environment.
 
----
+## Git
 
-## 🔧 Git Basics
-
-### Initialize a New Repository
+### Initialize a repository
 
 ```sh
 git init
-```
-
-### Add a Remote Repository
-
-```sh
 git remote add origin git@github.com:yanneckb/dotfiles-bra.git
-```
-
-Verify remote:
-
-```sh
 git remote -v
 ```
 
-### Push to Remote Repository
+### Sync with remote
 
 ```sh
-git push origin master
+git pull origin main
+git push origin main
 ```
 
-### Pull from Remote Repository
+## Archives
+
+### Create tar.gz
 
 ```sh
-git pull origin master
+tar czvf /path/to/backup.tar.gz -C /path/to/source .
 ```
 
----
-
-## 🗜️ Zip and Unzip Archives
-
-### Create a Compressed Archive (tar.gz)
-
-```sh
-tar czvf /path/to/destination/backup.tar.gz -C /path/to/target-files .
-```
-
-* `-c`: create archive
-* `-z`: gzip compression
-* `-v`: verbose output
-* `-f`: specify file name
-* `-C`: change to directory before archiving
-
-### Extract a Compressed Archive
+### Extract tar.gz
 
 ```sh
 tar xzvf /path/to/backup.tar.gz -C /destination/path
 ```
 
-* `-x`: extract files
-* `-z`: gzip decompression
-* `-v`: verbose output
-* `-f`: specify file name
-* `-C`: change to target directory
+## SSH keys
 
----
+```sh
+ssh-keygen -t ed25519 -C "your@email.com"
+eval "$(ssh-agent -s)"
+ssh-add ~/.ssh/id_ed25519
+cat ~/.ssh/id_ed25519.pub
+ssh -T git@github.com
+```
 
-## 🔐 SSH Key Setup
+Add the public key to GitHub: [SSH key docs](https://docs.github.com/en/authentication/connecting-to-github-with-ssh/adding-a-new-ssh-key-to-your-github-account).
 
-1. Generate a new SSH key (using Ed25519):
+## Symlinks
 
-   ```sh
-   ssh-keygen -t ed25519 -C "email@address.com"
-   ```
-
-2. Start the ssh-agent:
-
-   ```sh
-   eval "$(ssh-agent -s)"
-   ```
-
-3. Add your SSH private key to the agent:
-
-   ```sh
-   ssh-add ~/.ssh/id_ed25519
-   ```
-
-4. Display your public key:
-
-   ```sh
-   cat ~/.ssh/id_ed25519.pub
-   ```
-
-5. Copy the output and add the public key to your GitHub account ([GitHub SSH docs](https://docs.github.com/en/authentication/connecting-to-github-with-ssh/adding-a-new-ssh-key-to-your-github-account)).
-
-6. Test the connection:
-
-   ```sh
-   ssh -T git@github.com
-   ```
-
----
-
-## 🔗 Creating Symlinks
-
-### Basic Symlink Command
+GNU Stow manages symlinks automatically. For manual links:
 
 ```sh
 ln -s /path/to/source /path/to/destination
 ```
 
-### Moving a File/Directory and Creating a Symlink
+### Adopt existing config into dotfiles
 
 ```sh
-mv /path/to/source /path/to/destination
-ln -s /path/to/destination /path/to/source
+cd ~/dotfiles
+stow --adopt .
 ```
+
+Back up existing files before using `--adopt`.
+
+## Dotfiles maintenance
+
+```sh
+cd ~/dotfiles
+git pull
+stow -R .
+```
+
+Preview without changes:
+
+```sh
+stow -n -v .
+```
+
+Remove symlinks:
+
+```sh
+stow -D .
+```
+
+## Bootstrap
+
+```sh
+~/dotfiles/scripts/bootstrap.sh
+```
+
+Installs Homebrew packages, stows dotfiles, trusts mise config.
+
+## Node.js (mise)
+
+Replaces nvm. Config: `~/.config/mise/config.toml`
+
+```sh
+mise trust ~/.config/mise/config.toml
+mise install
+mise use node@22    # example
+```
+
+Reads `.nvmrc` in project directories automatically.
+
+## Shell history (atuin)
+
+```sh
+atuin register      # once
+atuin sync          # optional sync
+```
+
+Search history: `Ctrl+R`
+
+## Git identity
+
+```sh
+cp ~/dotfiles/.gitconfig.local.example ~/.gitconfig.local
+# edit name and email
+```
+
+## DDEV
+
+```sh
+brew install ddev/ddev/ddev
+ddev config
+ddev start
+```
+
+See [CustomShortcuts.md](CustomShortcuts.md) for project aliases.

@@ -1,0 +1,16 @@
+# Recommended Cursor extensions (install manually)
+# cat extensions.txt | xargs -L1 cursor --install-extension
+
+dbaeumer.vscode-eslint
+esbenp.prettier-vscode
+stylelint.vscode-stylelint
+vue.volar
+jdinhlife.gruvbox
+pkief.material-icon-theme
+eamodio.gitlens
+gitlab.gitlab-workflow
+whatwedo.twig
+mblode.twig-language-2
+deque-systems.vscode-axe-linter
+usernamehw.errorlens
+bierner.markdown-mermaid

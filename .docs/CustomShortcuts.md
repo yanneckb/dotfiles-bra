@@ -1,76 +1,73 @@
 # Custom Shortcuts
 
-Here are some custom shortcuts that are created inside `.config/zsh/*.zsh`
+## Basic (`basic.zsh`)
 
-## Basic
+### CLI aliases
 
-### Shortcuts
-| Shortcut | Description |
-|----------|-------------|
-| `..` | Change to parent directory |
-| `...` | Change two directories up |
-| `lg` | Start lazygit |
-| `ls` | Use lsd for enhanced directory listing |
-| `chdsk` | Show disk space information for current directory |
+| Shortcut | Tool | Description |
+|----------|------|-------------|
+| `cat` | bat | Syntax-highlighted file view |
+| `less` | bat | Paged file view |
+| `grep` | ripgrep (`rg`) | Fast content search |
+| `find` | fd | Fast file search |
+| `ls` / `la` | lsd (fallback: eza) | Icons + colors |
+| `..` / `...` | cd | Up 1 / 2 directories |
+| `lg` | lazygit | Git TUI |
+| `c` | clear | Clear screen |
+| `chdsk` | df | Disk space |
 
 ### Functions
 
 | Function | Description |
 |----------|-------------|
-| `cl` | Clears the screen and displays fastfetch information |
-| `load-nvmrc` | Automatically loads and uses the correct Node.js version from .nvmrc |
-| `proj [projectname]` | Quick directory change to a project under ~/repositories/ |
+| `cl` | Clear + fastfetch |
+| `proj [name]` | Jump to project; fzf picker without args |
 
+Set `PROJ_DIR` to override `~/repositories/`.
 
+## GitLab (`gitlab.zsh`)
 
-## ddev
+Requires `glab`. Only loaded if installed.
 
-### Shortcuts
 | Shortcut | Description |
 |----------|-------------|
-| `dstart` | Startet die DDEV-Umgebung |
-| `dstop` | Stoppt die DDEV-Umgebung |
-| `drestart` | Neustart der DDEV-Umgebung |
-| `dssh` | SSH-Verbindung zur DDEV-Container |
-| `dlog` | Zeigt die DDEV-Logs an |
-| `dupdate` | Aktualisiert DDEV auf die neueste Version |
-| `dbuild` | Führt das Build-Skript für JS aus |
-| `dbuild-storefront` | Führt das Build-Skript für den Storefront aus |
-| `dbuild-administration` | Führt das Build-Skript für die Administration aus |
+| `mrc` | Create merge request |
+| `mrv` | View MR |
+| `mrl` | List MRs |
+| `mrd` | MR diff |
+| `il` / `ic` / `iv` | Issues list/create/view |
+| `ci` / `cil` / `pipe` | CI view/list/trace |
 
-### Functions
-| Function | Description |
-|----------|-------------|
-| `ddev-updatedb` | Führt Datenbank-Migrationen aus, aktualisiert Indices, beendet System-Updates und leert den Cache |
-| `ddev-watch` | Startet den Storefront-Watch-Modus für die Entwicklung |
+## Shopware (`shopware.zsh`)
 
-## fzf
-
-### Shortcuts
-
-### Functions
-
-
-## tmux shortcuts
-
-### Shortcuts
 | Shortcut | Description |
 |----------|-------------|
-| `t` | Start a new tmux session |
-| `ta` | Attach to an existing tmux session |
-| `tls` | List all tmux sessions |
-| `tn` | Create a new named tmux session |
-| `tks` | Kill current tmux session |
-| `tksa` | Kill all tmux sessions |
-| `tkss` | Kill specific tmux session |
-| `tkssa` | Kill all tmux sessions except the current one |
-| `tksss` | Kill specific tmux session by name |
-| `tksssa` | Kill all tmux sessions except the specified one |
-| `tlast` | Attach to the last tmux session |
+| `swc` | shopware-cli |
+| `swc-build` | storefront-build |
+| `mkcert-install` | `mkcert -install` (one-time) |
 
-### Functions
-| Function | Description |
+## DDEV (`ddev.zsh`)
+
+See [README](../README.md#ddev--shopware) for full list.
+
+## Zellij (`zellij.zsh`)
+
+| Shortcut | Description |
 |----------|-------------|
-| `tm` | Create or attach to a tmux session with fuzzy finding |
-| `tmcd` | Create a new tmux session in the current directory |
-| `tkillall` | Kill all tmux sessions and start a new one |
+| `zj [name]` | Create or attach session |
+| `zja` | Attach to session |
+| `zjl` | List sessions |
+| `zjk` | Kill session |
+| `zjka` | Kill all sessions |
+| `zjcd` | New session named after current directory |
+| `zjkillall` | Kill all sessions (loop) |
+
+## Integrations (`.zshrc`)
+
+| Tool | Key / trigger |
+|------|---------------|
+| atuin | `Ctrl+R` fuzzy history |
+| fzf | `Ctrl+R`, `Ctrl+T`, `Alt+C` |
+| zoxide | `cd <dir>` smart jump |
+| mise | Auto-switch Node/PHP per `.nvmrc` / `.tool-versions` |
+| direnv | Auto-load `.envrc` per project |
