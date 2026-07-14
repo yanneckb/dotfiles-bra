@@ -12,9 +12,17 @@ alias dlog="ddev logs"
 alias dupdate="curl -fsSL https://raw.githubusercontent.com/ddev/ddev/master/scripts/install_ddev.sh | bash && ddev --version"
 
 ### ddev shopware commands
-alias dbuild="ddev exec bin/build-js.sh"
-alias dbuild-storefront="ddev exec bin/build-storefront.sh"
-alias dbuild-administration="ddev exec bin/build-administration.sh"
+alias dc="ddev exec bin/console"
+alias dcc="ddev exec bin/console cache:clear"
+alias dccf="ddev exec bin/console cache:clear && rm -rf var/cache/*"
+alias dba="ddev exec bin/build-administration.sh"
+alias dbs="ddev exec bin/build-storefront.sh"
+alias dbas="ddev exec bin/build-administration.sh && ddev exec bin/console cache:clear"
+alias dbsc="ddev exec bin/build-storefront.sh && ddev exec bin/console cache:clear"
+alias dwa="ddev exec bin/watch-administration.sh"
+alias dws="ddev exec bin/watch-storefront.sh"
+alias dct="ddev exec bin/console theme:compile"
+alias dpr="ddev exec bin/console plugin:refresh"
 
 # --- Functions ---
 ddev-updatedb() {

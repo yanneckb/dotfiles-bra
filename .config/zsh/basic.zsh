@@ -9,6 +9,7 @@ alias lg='lazygit'
 alias ls='lsd'
 alias la='lsd -la'
 alias chdsk='df -k .'
+alias c='clear'
 
 # --- Functions ---
 ### clear + fastfetch alias
