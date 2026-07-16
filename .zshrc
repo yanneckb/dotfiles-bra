@@ -58,6 +58,7 @@ zinit ice wait lucid
 zinit snippet OMZP::command-not-found
 
 ### Load completions (cached, rebuilt max once per day)
+fpath=(~/.config/zsh/completions $fpath)
 autoload -Uz compinit
 if [[ -n ${ZDOTDIR:-$HOME}/.zcompdump(#qN.mh+24) ]]; then
   compinit

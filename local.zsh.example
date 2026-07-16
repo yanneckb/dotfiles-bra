@@ -1,0 +1,19 @@
+# Personal dotfiles config — copy to local.zsh (not tracked):
+#   cp ~/dotfiles/local.zsh.example ~/dotfiles/local.zsh
+#
+# After editing git name/email, sync git config:
+#   ~/dotfiles/scripts/apply-local-config.sh
+
+# --- Git ---
+typeset -g LOCAL_GIT_NAME='Your Name'
+typeset -g LOCAL_GIT_EMAIL='your@email.com'
+
+# --- Paths ---
+typeset -g PROJ_DIR="$HOME/repositories"
+typeset -g OBSIDIAN_VAULT="$HOME/Documents/Obsidian/My Vault"
+
+# --- rep() shortcuts ---
+typeset -g -A REPO_MAP=(
+  project1  project-app-one
+  project2  project-app-two
+)

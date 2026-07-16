@@ -46,7 +46,7 @@ cd ~/dotfiles
 Or manually:
 
 ```sh
-stow .
+./scripts/stow-dotfiles.sh
 mise trust ~/.config/mise/config.toml
 atuin register   # once, for history sync
 ```
@@ -77,7 +77,7 @@ dotfiles/
 
 | Module | Purpose |
 |--------|---------|
-| `basic.zsh` | bat/rg/fd aliases, `proj()`, navigation |
+| `basic.zsh` | bat/rg/fd aliases, navigation; sources `functions/basics.zsh` |
 | `ddev.zsh` | DDEV + Shopware shortcuts |
 | `gitlab.zsh` | GitLab CLI (`glab`) aliases |
 | `shopware.zsh` | shopware-cli, mkcert aliases |
@@ -103,14 +103,24 @@ Integrations in `.zshrc`: zinit, mise, direnv, atuin, starship, fzf, zoxide
 ## Updates
 
 ```sh
-cd ~/dotfiles && git pull && stow -R .
+cd ~/dotfiles && git pull && ./scripts/stow-dotfiles.sh
 ```
 
 ## Customization
 
-- `PROJ_DIR` env var overrides `~/repositories/` for `proj()`
-- `~/.gitconfig.local` for personal git identity (not in dotfiles)
-- New shell module: add `.config/zsh/myfeature.zsh`
+Personal settings live in one local file (not tracked):
+
+| File | Purpose |
+|------|---------|
+| `~/dotfiles/local.zsh` | Git identity, paths, Obsidian vault, `rep` shortcuts |
+
+Copy from `local.zsh.example` or let `bootstrap.sh` create it. After changing git name/email:
+
+```sh
+~/dotfiles/scripts/apply-local-config.sh
+```
+
+New shell module: add `.config/zsh/myfeature.zsh`
 
 ## Credits
 

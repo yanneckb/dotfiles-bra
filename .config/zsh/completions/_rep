@@ -1,0 +1,7 @@
+#compdef rep
+
+_rep() {
+  local -a projects
+  projects=(${(ko)REPO_MAP})
+  _describe 'project' projects
+}

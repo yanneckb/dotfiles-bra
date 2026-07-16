@@ -1,6 +1,6 @@
 # Custom Shortcuts
 
-## Basic (`basic.zsh`)
+## Basic (`basic.zsh` + `functions/basics.zsh`)
 
 ### CLI aliases
 
@@ -22,8 +22,11 @@
 |----------|-------------|
 | `cl` | Clear + fastfetch |
 | `proj [name]` | Jump to project; fzf picker without args |
+| `rep <alias>` | Jump to mapped repo (`schwalbe`, `jpt`, …) |
 
-Set `PROJ_DIR` to override `~/repositories/`.
+Set `PROJ_DIR` in `local.zsh` to override `~/repositories/`.
+
+Repo aliases for `rep` live in `~/dotfiles/local.zsh` (not tracked). Copy from `local.zsh.example`.
 
 ## GitLab (`gitlab.zsh`)
 

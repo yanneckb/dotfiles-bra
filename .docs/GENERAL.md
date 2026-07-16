@@ -66,8 +66,7 @@ Back up existing files before using `--adopt`.
 
 ```sh
 cd ~/dotfiles
-git pull
-stow -R .
+./scripts/stow-dotfiles.sh
 ```
 
 Preview without changes:
@@ -111,12 +110,15 @@ atuin sync          # optional sync
 
 Search history: `Ctrl+R`
 
-## Git identity
+## Git identity & local config
 
 ```sh
-cp ~/dotfiles/.gitconfig.local.example ~/.gitconfig.local
-# edit name and email
+cp ~/dotfiles/local.zsh.example ~/dotfiles/local.zsh
+# edit name, email, paths, repo shortcuts
+~/dotfiles/scripts/apply-local-config.sh
 ```
+
+Tracked `.gitconfig` includes `~/.gitconfig.local`, which is generated from `local.zsh`.
 
 ## DDEV
 

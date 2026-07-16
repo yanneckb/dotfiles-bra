@@ -4,12 +4,30 @@
 set -euo pipefail
 
 DOTFILES="${DOTFILES:-$HOME/dotfiles}"
-VAULT="${OBSIDIAN_VAULT:-$HOME/Documents/Obsidian/Yannecks Vault}"
-LINK_DIR="$VAULT/Dotfile System"
+LOCAL_ZSH="$DOTFILES/local.zsh"
+
+if [[ -f "$LOCAL_ZSH" ]]; then
+  # shellcheck source=/dev/null
+  source "$LOCAL_ZSH"
+fi
+
+VAULT="${OBSIDIAN_VAULT:-}"
+LINK_DIR="${OBSIDIAN_LINK_DIR:-$VAULT/Dotfile System}"
 DOCS_LINK="$LINK_DIR/Dotfiles"
 DOCS_TARGET="$DOTFILES/.docs"
 README_LINK="$LINK_DIR/README.md"
 README_TARGET="$DOTFILES/README.md"
+
+if [[ -z "$VAULT" ]]; then
+  echo "ERROR: OBSIDIAN_VAULT not set."
+  echo "Copy local.zsh.example to local.zsh and set OBSIDIAN_VAULT."
+  exit 1
+fi
+
+if [[ ! -d "$VAULT" ]]; then
+  echo "ERROR: Vault not found: $VAULT"
+  exit 1
+fi
 
 if [[ ! -d "$DOCS_TARGET" ]]; then
   echo "ERROR: $DOCS_TARGET not found"

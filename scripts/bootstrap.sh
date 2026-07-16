@@ -23,16 +23,19 @@ else
   brew bundle install --file="$BREWFILE"
 fi
 
-# --- Git identity ---
-echo "==> [2/6] Git config..."
-if [[ ! -f "$HOME/.gitconfig.local" ]]; then
-  if [[ -f "$DOTFILES/.gitconfig.local.example" ]]; then
-    cp "$DOTFILES/.gitconfig.local.example" "$HOME/.gitconfig.local"
-    echo "    Created ~/.gitconfig.local — edit name/email!"
+# --- Local config ---
+echo "==> [2/6] Local config..."
+
+if [[ ! -f "$DOTFILES/local.zsh" ]]; then
+  if [[ -f "$DOTFILES/local.zsh.example" ]]; then
+    cp "$DOTFILES/local.zsh.example" "$DOTFILES/local.zsh"
+    echo "    Created local.zsh — edit name, email, paths, repo shortcuts!"
   fi
 else
-  echo "    ~/.gitconfig.local exists."
+  echo "    local.zsh exists."
 fi
+
+"$DOTFILES/scripts/apply-local-config.sh" 2>/dev/null || true
 
 # --- Stow ---
 echo "==> [3/6] Stowing dotfiles..."
@@ -41,10 +44,10 @@ cd "$DOTFILES"
 if [[ -d "$HOME/.config/nvim" && ! -L "$HOME/.config/nvim/init.lua" ]] 2>/dev/null; then
   echo "    WARNING: existing ~/.config/nvim (not stowed)."
   echo "    Backup: mv ~/.config/nvim ~/.config/nvim.bak"
-  echo "    Or adopt: stow --adopt .config && stow -R ."
+  echo "    Or adopt: stow --adopt .config && ./scripts/stow-dotfiles.sh"
 fi
 
-stow -R .
+"$DOTFILES/scripts/stow-dotfiles.sh"
 
 # --- mise ---
 echo "==> [4/6] mise runtime manager..."
@@ -85,7 +88,7 @@ echo ""
 echo "Next steps:"
 echo "  1. source ~/.zshrc"
 echo "  2. atuin register          (if not done)"
-echo "  3. Edit ~/.gitconfig.local (name/email)"
+echo "  3. Edit ~/dotfiles/local.zsh (then: scripts/apply-local-config.sh for git)"
 echo "  4. nvim                    (LazyVim first launch)"
 echo ""
 echo "Verify: brew bundle check --file=$BREWFILE"

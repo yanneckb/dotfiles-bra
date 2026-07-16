@@ -1,5 +1,0 @@
-# user.name=Your Name
-# user.email=your@email.com
-
-# Copy to ~/.gitconfig.local (not tracked):
-#   cp ~/dotfiles/.gitconfig.local.example ~/.gitconfig.local

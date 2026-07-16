@@ -1,0 +1,10 @@
+#compdef proj
+
+_proj() {
+  local -a dirs
+
+  [[ -d "$PROJ_DIR" ]] || return 1
+
+  dirs=(${PROJ_DIR}/*(N/:t))
+  _describe 'project' dirs
+}

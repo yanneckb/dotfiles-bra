@@ -5,4 +5,6 @@ README.md
 scripts
 .history
 \.bak$
+\.DS_Store
+local\.zsh
 .cursor/extensions/extensions.json
